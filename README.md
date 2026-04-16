@@ -11,7 +11,7 @@ Set up a search connector in Synthesis to generate your Connector ID and API Key
 The [Synthesis Search Connector API Playground](https://api.knowledge-architecture.com/) is a web-based tool that allows you to test your search connector implementation without needing to set up a local development environment. You can use the API Playground to send test search queries and see how the API responds.
 - Put your Connector ID and API Key in the API Playground to authenticate your requests.
 - Test out the endpoint to get all source items. It should return an empty array
-- Create a test search item
+- Create a test source item
 - Retry the endpoint to get all source items. It should return an array with the item you just created.
 - Get the item by its ID to see the details of the item you created.
 - Delete the item by its ID to clean up your test data.
