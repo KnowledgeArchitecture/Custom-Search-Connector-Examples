@@ -19,10 +19,10 @@ The [Synthesis Search Connector API Playground](https://api.knowledge-architectu
 
 ## Prerequisites for development
 
-- node.js 24.04 or higher (we like using nvm to manage node versions)
-- a text editor or IDE of your choice (we recommend Visual Studio Code)
-- your Connector ID and API Key from Synthesis
-- (optional) Git for version control
+- Node.js 24.14 or higher (we like using nvm to manage Node.js versions)
+- A text editor or IDE of your choice (we recommend Visual Studio Code)
+- Your Connector ID and API Key from Synthesis
+- (Optional) Git for version control
 
 ## Setting up the Node.js Simple RSS Scraper Example
 
