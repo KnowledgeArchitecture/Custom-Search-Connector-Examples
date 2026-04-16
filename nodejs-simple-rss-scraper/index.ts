@@ -6,16 +6,21 @@ import { htmlToLlmText } from './htmlToLlmText.js';
 
 const API_URL = 'https://api.knowledge-architecture.com/api';
 
-const { CONNECTOR_ID, CONNECTOR_KEY, CATEGORY } = fetchVarsFromEnv();
+const { CONNECTOR_ID, API_KEY, CATEGORY } = fetchVarsFromEnv();
 
 const RSS_URL = `https://www.knowledge-architecture.com/blog/category/${CATEGORY}?format=rss`;
 
 function fetchVarsFromEnv() {
-    const { CONNECTOR_ID, CONNECTOR_KEY, CATEGORY } = process.env;
-    if (!CONNECTOR_ID || !CONNECTOR_KEY || !CATEGORY) {
-        throw new Error('Please set CONNECTOR_ID, CONNECTOR_KEY, and CATEGORY in the environment variables');
+    const { CONNECTOR_ID, API_KEY, CATEGORY } = process.env;
+    console.log('Fetched environment variables:', {
+        CONNECTOR_ID: Boolean(CONNECTOR_ID),
+        API_KEY: Boolean(API_KEY),
+        CATEGORY: Boolean(CATEGORY),
+    });
+    if (!CONNECTOR_ID || !API_KEY || !CATEGORY) {
+        throw new Error('Please set CONNECTOR_ID, API_KEY, and CATEGORY in the environment variables');
     }
-    return { CONNECTOR_ID, CONNECTOR_KEY, CATEGORY };
+    return { CONNECTOR_ID, API_KEY, CATEGORY };
 }
 
 async function fetchAndParseRSS() {
@@ -54,7 +59,7 @@ async function fetchAndParseRSS() {
                 includeUrls: true,
                 listBullet: '• '
             }),
-            additionalSearchTerms: JSON.stringify([item.category]),
+            additionalSearchTerms: [item.category],
             lastSaved: new Date().toISOString(),
             lastSubmitted: null,
         };
@@ -76,7 +81,7 @@ async function fetchAndParseRSS() {
 
 async function submitItem(sourceItem: Record<string, any>) {
     const fullUrl = `${API_URL}/SourceItem`;
-    const apiKey = CONNECTOR_ID + ":" + CONNECTOR_KEY;
+    const apiKey = CONNECTOR_ID + ":" + API_KEY;
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
