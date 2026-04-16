@@ -12,7 +12,11 @@ const RSS_URL = `https://www.knowledge-architecture.com/blog/category/${CATEGORY
 
 function fetchVarsFromEnv() {
     const { CONNECTOR_ID, API_KEY, CATEGORY } = process.env;
-    console.log('Fetched environment variables:', { CONNECTOR_ID, API_KEY, CATEGORY });
+    console.log('Fetched environment variables:', {
+        CONNECTOR_ID: Boolean(CONNECTOR_ID),
+        API_KEY: Boolean(API_KEY),
+        CATEGORY: Boolean(CATEGORY),
+    });
     if (!CONNECTOR_ID || !API_KEY || !CATEGORY) {
         throw new Error('Please set CONNECTOR_ID, API_KEY, and CATEGORY in the environment variables');
     }
