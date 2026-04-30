@@ -65,6 +65,6 @@ jobs:
         id: fa
         with:
           app-name: 'simplerssscraper'
-          slot-name: 'Production'
+        #   slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8BD2566C43D249928434ABDDB9183FB3 }}
