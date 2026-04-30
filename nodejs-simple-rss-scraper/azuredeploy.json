@@ -4,7 +4,7 @@
   "parameters": {
     "appName": {
       "type": "string",
-      "defaultValue": "simple-rss-scraper: KA Smarter By Design Newsletter",
+      "defaultValue": "simple-rss-scraper:KA-Smarter-By-Design-Newsletter",
       "metadata": {
         "description": "Base name for all resources. The function app name must be globally unique."
       }
