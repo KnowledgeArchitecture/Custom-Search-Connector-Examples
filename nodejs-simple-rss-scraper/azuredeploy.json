@@ -111,9 +111,30 @@
             {
               "name": "RSS_SCRAPER_SCHEDULE",
               "value": "0 0 * * * *"
+            },
+            {
+              "name": "PROJECT",
+              "value": "nodejs-simple-rss-scraper"
+            },
+            {
+              "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+              "value": "true"
             }
           ]
         }
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/sourcecontrols",
+      "apiVersion": "2023-01-01",
+      "name": "[concat(variables('functionAppName'), '/web')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
+      ],
+      "properties": {
+        "repoUrl": "https://github.com/KnowledgeArchitecture/Custom-Search-Connector-Examples/",
+        "branch": "azure-deploy-function-button",
+        "isManualIntegration": true
       }
     }
   ],
