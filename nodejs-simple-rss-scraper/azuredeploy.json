@@ -64,17 +64,15 @@
         "name": "Y1",
         "tier": "Dynamic"
       },
-      "kind": "linux",
-      "properties": {
-        "reserved": true
-      }
+      "kind": "functionapp",
+      "properties": {}
     },
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2023-01-01",
       "name": "[variables('functionAppName')]",
       "location": "[parameters('location')]",
-      "kind": "functionapp,linux",
+      "kind": "functionapp",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
@@ -82,7 +80,6 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
         "siteConfig": {
-          "linuxFxVersion": "Node|24",
           "appSettings": [
             {
               "name": "AzureWebJobsStorage",
@@ -95,6 +92,10 @@
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
               "value": "node"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "~24"
             },
             {
               "name": "CONNECTOR_ID",
