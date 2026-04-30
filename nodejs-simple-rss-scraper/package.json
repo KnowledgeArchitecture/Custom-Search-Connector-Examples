@@ -10,10 +10,11 @@
     "node": ">=24.14.0"
   },
   "scripts": {
-    "start": "node --env-file=.env index.ts",
+    "start": "func start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@azure/functions": "^4.0.0",
     "cheerio": "^1.2.0",
     "fast-xml-parser": "^5.3.3"
   },

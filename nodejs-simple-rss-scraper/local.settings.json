@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "CONNECTOR_ID": "",
+    "API_KEY": "",
+    "CATEGORY": "",
+    "RSS_SCRAPER_SCHEDULE": "0 0 * * * *"
+  }
+}
