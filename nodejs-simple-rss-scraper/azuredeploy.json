@@ -80,6 +80,7 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
         "siteConfig": {
+          "use32BitWorkerProcess": false,
           "appSettings": [
             {
               "name": "AzureWebJobsStorage",
