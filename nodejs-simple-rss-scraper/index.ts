@@ -1,4 +1,7 @@
-import { app, InvocationContext, Timer } from '@azure/functions';
+import azureFunctions from '@azure/functions';
+const { app } = azureFunctions;
+type InvocationContext = azureFunctions.InvocationContext;
+type Timer = azureFunctions.Timer;
 import { XMLParser } from 'fast-xml-parser';
 import { writeFileSync } from 'fs';
 import { createHash } from 'crypto';
