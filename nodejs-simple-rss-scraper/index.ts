@@ -1,7 +1,3 @@
-import azureFunctions from '@azure/functions';
-const { app } = azureFunctions;
-type InvocationContext = azureFunctions.InvocationContext;
-type Timer = azureFunctions.Timer;
 import { XMLParser } from 'fast-xml-parser';
 import { writeFileSync } from 'fs';
 import { createHash } from 'crypto';
@@ -54,15 +50,15 @@ async function submitItem(sourceItem: Record<string, any>, connectorId: string, 
     }
 }
 
-app.timer('rssScraperTimer', {
-    schedule: process.env.RSS_SCRAPER_SCHEDULE ?? '0 0 * * * *',
-    handler: async (_myTimer: Timer, context: InvocationContext) => {
+type Logger = Console['log'];
+
+export async function main(logger:Logger) {
         const { CONNECTOR_ID, API_KEY, CATEGORY } = fetchVarsFromEnv();
         const RSS_URL = `https://www.knowledge-architecture.com/blog/category/${CATEGORY}?format=rss`;
 
         const json = await fetchAndParseRSS(RSS_URL);
         const rssItems = json.rss.channel.item;
-        context.log('total items:', rssItems.length);
+        logger('total items:', rssItems.length);
 
         const map: Record<string, any> = {};
         rssItems.forEach((item: any) => {
@@ -96,6 +92,4 @@ app.timer('rssScraperTimer', {
             await submitItem(item, CONNECTOR_ID, API_KEY);
             map[key].lastSubmitted = new Date().toISOString();
         }
-    }
-});
-
+}

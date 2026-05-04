@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-simple-website-scraper",
+  "name": "nodejs-simple-rss-scraper",
   "version": "1.0.0",
-  "description": "An example search connector built to scrape a website",
+  "description": "An example search connector built to scrape the Knowledge Architecture Smarter By Design RSS feed",
   "license": "MIT",
   "author": "",
   "type": "module",
@@ -10,7 +10,7 @@
     "node": ">=22.22.2"
   },
   "scripts": {
-    "start": "func start",
+    "start": "node --env-file=.env -e 'import(\"./index.ts\").then(({main}) => main(console.log))'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
