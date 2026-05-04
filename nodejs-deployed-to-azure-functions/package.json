@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@azure/functions": "^4.14.0"
+    "@azure/functions": "^4.14.0",
+    "nodejs-simple-rss-scraper": "file:../nodejs-simple-rss-scraper"
   }
 }

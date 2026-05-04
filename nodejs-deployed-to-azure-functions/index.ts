@@ -1,5 +1,5 @@
 import azureFunctions from '@azure/functions';
-import { main } from '../nodejs-simple-rss-scraper';
+import { main } from 'nodejs-simple-rss-scraper';
 const { app } = azureFunctions;
 type InvocationContext = azureFunctions.InvocationContext;
 type Timer = azureFunctions.Timer;
