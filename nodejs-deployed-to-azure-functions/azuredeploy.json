@@ -96,7 +96,7 @@
             },
             {
               "name": "WEBSITE_NODE_DEFAULT_VERSION",
-              "value": "~24"
+              "value": "~22"
             },
             {
               "name": "CONNECTOR_ID",
