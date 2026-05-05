@@ -120,7 +120,7 @@
             },
             {
               "name": "PROJECT",
-              "value": "nodejs-deployed-to-azure-functions"
+              "value": "nodejs-simple-rss-scraper"
             },
             {
               "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
