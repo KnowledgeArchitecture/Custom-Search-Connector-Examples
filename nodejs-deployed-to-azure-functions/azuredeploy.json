@@ -139,7 +139,7 @@
       ],
       "properties": {
         "repoUrl": "https://github.com/KnowledgeArchitecture/Custom-Search-Connector-Examples.git",
-        "branch": "separate-azure-functions-deploy",
+        "branch": "azure-deploy-function-button",
         "isManualIntegration": true
       }
     }
