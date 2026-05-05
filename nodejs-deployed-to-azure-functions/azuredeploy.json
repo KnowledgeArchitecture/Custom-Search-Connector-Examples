@@ -119,8 +119,12 @@
               "value": "nodejs-deployed-to-azure-functions"
             },
             {
+              "name": "PROJECT",
+              "value": "nodejs-deployed-to-azure-functions"
+            },
+            {
               "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
-              "value": "false"
+              "value": "true"
             }
           ]
         }
