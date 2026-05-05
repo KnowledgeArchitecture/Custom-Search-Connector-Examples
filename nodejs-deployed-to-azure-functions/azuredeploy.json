@@ -134,7 +134,7 @@
         "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
       ],
       "properties": {
-        "repoUrl": "https://github.com/KnowledgeArchitecture/Custom-Search-Connector-Examples",
+        "repoUrl": "https://github.com/KnowledgeArchitecture/Custom-Search-Connector-Examples.git",
         "branch": "separate-azure-functions-deploy",
         "isManualIntegration": true
       }
