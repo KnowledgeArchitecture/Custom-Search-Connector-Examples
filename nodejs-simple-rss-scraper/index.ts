@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import { writeFileSync } from 'fs';
 import { createHash } from 'crypto';
-import { htmlToLlmText } from './htmlToLlmText.js';
+import { SearchConnectorApi } from './SearchConnectorApi.ts';
 
 
 const API_URL = 'https://api.knowledge-architecture.com/api';
@@ -54,11 +54,7 @@ async function fetchAndParseRSS() {
             sourceItemLastUpdatedAt: isoDate,
             sourceItemCreatedAt: isoDate,
             displayName: item.title,
-            body: htmlToLlmText(body, {
-                preserveLinks: true,
-                includeUrls: true,
-                listBullet: '• '
-            }),
+            body: body,
             additionalSearchTerms: [item.category],
             lastSaved: new Date().toISOString(),
             lastSubmitted: null,
@@ -68,40 +64,21 @@ async function fetchAndParseRSS() {
     // write the map to a JSON file with nice formatting
     writeFileSync('data/content.json', JSON.stringify(map, null, 2));
 
+    const api = new SearchConnectorApi({connectorId: CONNECTOR_ID, apiKey: API_KEY, apiUrl: API_URL});
+
+    process.stdout.write('Submitting items');
     for (const [key, item] of Object.entries(map)) {
         await new Promise(resolve => setTimeout(resolve, 2000)); // delay to stay within api rate limits
         // item but without lastSaved or lastSubmitted
-        delete item.lastSaved;
         delete item.lastSubmitted;
-        await submitItem(item);
+        process.stdout.write('.');
+        await api.submitSourceItem(item);
+
         map[key].lastSubmitted = new Date().toISOString();
     }
+    process.stdout.write('\n');
+
+    writeFileSync('data/content.json', JSON.stringify(map, null, 2));
+    console.log("Done!");
 
 })();
-
-async function submitItem(sourceItem: Record<string, any>) {
-    const fullUrl = `${API_URL}/SourceItem`;
-    const apiKey = CONNECTOR_ID + ":" + API_KEY;
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("X-Api-Key", apiKey);
-    myHeaders.append("Accept", "*/*");
-    const body = JSON.stringify(sourceItem);
-
-    const response = await fetch(fullUrl, {
-        method: 'PUT',
-        headers: myHeaders,
-        body: body,
-    });
-    console.log('Response headers:', response.headers);
-
-    const text = await response.text();
-    try{
-        return JSON.parse(text);
-    } catch (e) {
-        console.error('Failed to parse response as JSON:', e);
-        return null;
-    }
-}
-
